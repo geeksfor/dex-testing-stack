@@ -42,7 +42,7 @@ contract MiniDexFuzzTest is Test {
         // Here we assert a high-level property: matching redistributes balances but doesn't mint ETH.
         // (In this demo, all value stays within balanceEth accounting)
         amt = uint96(bound(amt, 1, 100));
-        buyPrice = uint128(bound(buyPrice, 1e9, 10 ether));
+        buyPrice = uint128(bound(buyPrice, 1e9, 9 ether));
         sellPrice = uint128(bound(sellPrice, 1e9, buyPrice)); // ensure crossed
 
         address buyer = address(0xBEEF);

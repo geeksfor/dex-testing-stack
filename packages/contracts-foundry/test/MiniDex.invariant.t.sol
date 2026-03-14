@@ -81,7 +81,7 @@ contract MiniDexInvariantTest is StdInvariant, Test {
 
     function setUp() external {
         dex = new MiniDex(10);
-        address[] memory users;
+        address[] memory users = new address[](3);
         users[0] = address(0x1111);
         users[1] = address(0x2222);
         users[2] = address(0x3333);
