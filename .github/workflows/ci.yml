@@ -15,7 +15,7 @@ permissions:
 
 env:
   NODE_VERSION: "20"
-  PNPM_VERSION: "9"
+  # PNPM_VERSION: "9"
   FOUNDRY_PROFILE: "default"
 
 jobs:
@@ -59,7 +59,11 @@ jobs:
       # 安装 forge-std（若 lib 已缓存会非常快）
       - name: Install forge-std
         run: |
-          forge install foundry-rs/forge-std --no-git
+          if [ ! -d "lib/forge-std" ]; then
+            forge install foundry-rs/forge-std --no-git
+          else
+            echo "forge-std already exists, skipping install"
+          fi
 
       - name: Forge fmt (check)
         run: forge fmt --check
