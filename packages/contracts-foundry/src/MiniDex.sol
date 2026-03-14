@@ -15,17 +15,17 @@ contract MiniDex {
 
     struct Order {
         address owner; // 下单的人
-        Side side;  // BUY or SELL
-        uint96 amount;      // base amount
-        uint128 price;      // quote per base
-        bool active;   // 是否有效（没取消、没完全成交）
+        Side side; // BUY or SELL
+        uint96 amount; // base amount
+        uint128 price; // quote per base
+        bool active; // 是否有效（没取消、没完全成交）
     }
 
     uint256 public nextOrderId = 1; // 自增订单号，从 1 开始
     uint16 public immutable feeBps; // e.g. 10 = 0.10%
 
     mapping(address => uint256) public balanceEth; // 用户在合约中的 可用 ETH 余额
-    mapping(uint256 => Order) public orders;  // 订单簿（但没有价格档位/队列等结构，只有存订单）
+    mapping(uint256 => Order) public orders; // 订单簿（但没有价格档位/队列等结构，只有存订单）
 
     event Deposit(address indexed user, uint256 amount);
     event Withdraw(address indexed user, uint256 amount);
@@ -74,7 +74,7 @@ contract MiniDex {
             balanceEth[msg.sender] = bal - amount;
         }
         // ("") 是 call 的 calldata，空字符串表示不调用函数、只转 ETH；不能省略，但可以用 new bytes(0) 等价替代。
-        (bool ok, ) = msg.sender.call{value: amount}("");
+        (bool ok,) = msg.sender.call{value: amount}("");
         require(ok, "transfer failed");
         emit Withdraw(msg.sender, amount);
     }
@@ -94,13 +94,7 @@ contract MiniDex {
         }
 
         orderId = nextOrderId++;
-        orders[orderId] = Order({
-            owner: msg.sender,
-            side: side,
-            amount: amount,
-            price: price,
-            active: true
-        });
+        orders[orderId] = Order({owner: msg.sender, side: side, amount: amount, price: price, active: true});
 
         emit OrderPlaced(orderId, msg.sender, side, amount, price);
     }

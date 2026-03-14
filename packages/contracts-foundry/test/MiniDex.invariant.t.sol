@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import "forge-std/StdInvariant.sol";
 import "../src/MiniDex.sol";
 
-contract MiniDexHandler is Test{
+contract MiniDexHandler is Test {
     MiniDex public dex;
     address[] public users;
 
@@ -13,7 +13,7 @@ contract MiniDexHandler is Test{
         dex = _dex;
         users = _users;
         for (uint256 i = 0; i < users.length; i++) {
-          vm.deal(users[i], 10_000 ether);
+            vm.deal(users[i], 10_000 ether);
         }
     }
 

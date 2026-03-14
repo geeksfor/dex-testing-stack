@@ -7,7 +7,7 @@ import "../src/MiniDex.sol";
 contract MiniDexUnitTest is Test {
     MiniDex dex;
     address alice = address(0xA11CE);
-    address bob   = address(0xB0B);
+    address bob = address(0xB0B);
 
     function setUp() external {
         dex = new MiniDex(10); // 0.10%
@@ -67,6 +67,7 @@ contract MiniDexUnitTest is Test {
         // Final balance = 20 - (8 + 0.008) = 11.992
         assertEq(dex.balanceEth(alice), 20 ether - (8 ether + feePaid));
     }
+
     // 验证buyprice < sellprice时会revert
     function test_match_reverts_if_price_not_crossed() external {
         vm.prank(alice);
