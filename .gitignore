@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+dist/
+out/
+cache/
+broadcast/
+lcov.info
+playwright-report/
+test-results/
+.env
+.DS_Store

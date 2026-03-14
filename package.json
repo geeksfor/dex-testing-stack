@@ -1,0 +1,13 @@
+{
+  "name": "dex-testing-stack",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test:contracts": "cd packages/contracts-foundry && forge test -vvv",
+    "test:ui": "pnpm -C packages/ui-tests test",
+    "test": "pnpm test:contracts && pnpm test:ui"
+  }
+}
