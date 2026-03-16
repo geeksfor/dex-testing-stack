@@ -1,0 +1,15 @@
+{
+  "name": "tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tx:debug": "node dist/tx-debug.js"
+  },
+  "dependencies": {
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.5.0"
+  }
+}
